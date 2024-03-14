@@ -1,6 +1,6 @@
 .display{
     height: 110px;
-    width: 340px;
+    width: 410px;
     border: 2px solid black;
     margin: 5px;
     text-align: right;
@@ -20,7 +20,7 @@ body{
 .button{
     margin: 2.5px;
     height: 80px;
-    width: 80px;
+    width: 100px;
 }
 
 .calc{
@@ -30,6 +30,6 @@ body{
 }
 
 .zero{
-    width: 170px;
+    width: 210px;
 }
 
