@@ -8,6 +8,9 @@ let dis = document.querySelector(".display");
 let press = document.querySelectorAll(".number");
 press.forEach(function (button) {
   button.addEventListener("click", () => {
+    if(oper==''){
+      clear();
+    }
     display(button.value);
   });
 });
