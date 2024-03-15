@@ -22,8 +22,10 @@ operator.forEach((button) => {
   button.addEventListener("click", () => {
     if (oper == "") {
       oper = button.value;
-      prevnum = newnum;
-      newnum = NaN;
+      if (isNaN(prevnum)) {
+        prevnum = newnum;
+        newnum = NaN;
+      }
       display("");
     }
     console.log(oper);
@@ -32,10 +34,13 @@ operator.forEach((button) => {
 
 let equal = document.querySelector(".equal");
 equal.addEventListener("click", () => {
-  if (!isNaN(newnum)) {
+  if (newnum!='' && !isNaN(prevnum) && oper!='') {
     check = true;
-    display(calculate(prevnum, oper, newnum));
+    let store = calculate(prevnum, oper, newnum);
+    console.log(!isNaN(newnum) , newnum);
+    display(store);
     initial();
+    prevnum = store;
   }
 });
 
@@ -54,13 +59,15 @@ function display(num) {
   if (!check) {
     num = update_number(num);
   }
+  if (!(isNaN(num)) && num.toString().length > 8) {
+    num = num.toString().substring(0, 8);
+  }
   dis.innerHTML = num;
   check = false;
 }
 
 function update_number(numb) {
   if (isNaN(newnum)) {
-    console.log(10);
     newnum = numb;
     return newnum;
   }
@@ -79,10 +86,11 @@ function calculate(numb1, operator, numb2) {
   } else if (operator == "-") {
     return numb1 - numb2;
   } else if (operator == "*") {
+    console.log(numb1,numb2)
     return numb1 * numb2;
   } else if (operator == "/") {
-    if(numb2==0){
-        return 'WTF!'
+    if (numb2 == 0) {
+      return "WTF!";
     }
     return numb1 / numb2;
   }
