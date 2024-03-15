@@ -29,9 +29,8 @@ operator.forEach((button) => {
       display("");
     }
     else if(oper != null && !isNaN(prevnum) && !isNaN(newnum)){
-        let o=oper;
         equals();
-        oper = o;
+        oper = button.value;
     }
   });
 });
