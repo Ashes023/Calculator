@@ -20,7 +20,7 @@ ac.addEventListener("click", () => {
 let operator = document.querySelectorAll(".operator");
 operator.forEach((button) => {
   button.addEventListener("click", () => {
-    if (oper == "") {
+    if (oper == "" && (!isNaN(prevnum) || !isNaN(newnum))) {
       oper = button.value;
       if (isNaN(prevnum)) {
         prevnum = newnum;
@@ -28,12 +28,18 @@ operator.forEach((button) => {
       }
       display("");
     }
-    console.log(oper);
+    else if(oper != null && !isNaN(prevnum) && !isNaN(newnum)){
+        let o=oper;
+        equals();
+        oper = o;
+    }
   });
 });
 
 let equal = document.querySelector(".equal");
-equal.addEventListener("click", () => {
+equal.addEventListener("click", equals); 
+function equals(){
+    console.log('working', newnum, prevnum, oper);
   if (newnum!='' && !isNaN(prevnum) && oper!='') {
     check = true;
     let store = calculate(prevnum, oper, newnum);
@@ -42,7 +48,7 @@ equal.addEventListener("click", () => {
     initial();
     prevnum = store;
   }
-});
+}
 
 function initial() {
   prevnum = NaN;
@@ -67,7 +73,7 @@ function display(num) {
 }
 
 function update_number(numb) {
-  if (isNaN(newnum)) {
+  if (isNaN(newnum) || newnum==0) {
     newnum = numb;
     return newnum;
   }
@@ -82,6 +88,7 @@ function calculate(numb1, operator, numb2) {
   numb1 = parseInt(numb1);
   numb2 = parseInt(numb2);
   if (operator == "+") {
+    console.log(numb1 , numb2);
     return numb1 + numb2;
   } else if (operator == "-") {
     return numb1 - numb2;
