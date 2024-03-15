@@ -8,7 +8,7 @@ let dis = document.querySelector(".display");
 let press = document.querySelectorAll(".number");
 press.forEach(function (button) {
   button.addEventListener("click", () => {
-    if(oper==''){
+    if(oper=='' && isNaN(newnum)){
       clear();
     }
     display(button.value);
@@ -87,8 +87,8 @@ function update_number(numb) {
 }
 
 function calculate(numb1, operator, numb2) {
-  numb1 = parseInt(numb1);
-  numb2 = parseInt(numb2);
+  numb1 = parseFloat(numb1);
+  numb2 = parseFloat(numb2);
   if (operator == "+") {
     console.log(numb1 , numb2);
     return numb1 + numb2;
